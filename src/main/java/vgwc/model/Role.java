@@ -1,5 +1,5 @@
 package vgwc.model;
 
 public enum Role {
-    USER;
+    USER, ADMIN;
 }

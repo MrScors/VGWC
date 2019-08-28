@@ -1,9 +1,11 @@
 package vgwc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import vgwc.model.Role;
 import vgwc.model.User;
 import vgwc.repos.UserRepo;
@@ -12,24 +14,32 @@ import java.util.Collections;
 import java.util.Map;
 
 @Controller
+@RequestMapping("/registration")
 public class RegistrationController {
 
     @Autowired
-    UserRepo userRepo;
+    private UserRepo userRepo;
 
-    @GetMapping("/registration")
-    public String registration() {
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @GetMapping
+    public String registration(Map<String, Object> model) {
         return "registration";
     }
 
-    @PostMapping("/registration")
+    @PostMapping
     public String register(User user, Map<String, Object> model) {
-        User userFromDB = userRepo.findByUsername(user.getUsername());
-        if (userFromDB != null) {
-            model.put("message", "User exists!");
+        if (userRepo.findByUsername(user.getUsername()) != null) {
+            model.put("errorMessage", "User with such name already exists");
+            return "registration";
+        }
+        if(userRepo.findByEmail(user.getEmail()) != null){
+            model.put("errorMessage", "User with such email already exists");
             return "registration";
         }
 
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
         userRepo.save(user);
