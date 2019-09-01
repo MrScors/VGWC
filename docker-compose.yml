@@ -1,0 +1,21 @@
+version: '3.1'
+
+services:
+
+  db:
+    build: ./db
+    #image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 'vgwc'
+      MYSQL_DATABASE: 'vgwc'
+      TZ: 'Europe/Sofia'
+    
+  vgwc:
+    build: ./
+    #image: vgwc
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - db

@@ -9,8 +9,8 @@
         </@e.error>
     </#if>
 
-    <h1>List of heroes</h1>
-    <form action="/uploadHeroImages" method="post" enctype="multipart/form-data">
+    <h1>Upload Images</h1>
+    <form style="font-weight: 700" action="/uploadHeroImages" method="post" enctype="multipart/form-data">
         <label>
             Image:
             <button class="myButton mt-2 ml-2">

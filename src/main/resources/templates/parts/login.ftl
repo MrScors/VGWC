@@ -21,10 +21,10 @@
                 <input type="password" name="password" class="form-control" placeholder="Password"/>
             </div>
         </div>
-        <input type="hidden" name="_csrf" value="${_csrf.token}">
         <button style="margin: 10px 30px 0 30px;" type="submit" class="myButton myBigButton col-sm-5">
             <#if isRegisterForm>Create<#else>Log in</#if>
         </button>
+        <input type="hidden" name="_csrf" value="${_csrf.token}">
     </form>
 
 
