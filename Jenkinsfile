@@ -3,22 +3,22 @@ pipeline {
     stages {
         stage('clean') {
             steps {
-                sh "/home/g123_18_1_pavlov/apache-maven/bin/mvn clean -f VGWC"
+                sh "/home/g123_18_1_pavlov/apache-maven/bin/mvn clean"
             }
         }
         stage('test') {
             steps {
-                sh "/home/g123_18_1_pavlov/apache-maven/bin/mvn test -f VGWC"
+                sh "/home/g123_18_1_pavlov/apache-maven/bin/mvn test"
             }
         }
         stage('install') {
             steps {
-                sh "/home/g123_18_1_pavlov/apache-maven/bin/mvn install -f VGWC"
+                sh "/home/g123_18_1_pavlov/apache-maven/bin/mvn install"
             }
         }
         // stage('package') {
         //     steps {
-        //         bat "/home/g123_18_1_pavlov/apache-maven/bin/mvn package -f VGWC"
+        //         bat "/home/g123_18_1_pavlov/apache-maven/bin/mvn package"
         //     }
         // }      
     }
