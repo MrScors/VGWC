@@ -3,3 +3,4 @@ Personal project for VainGlory players that helps you in counter-picking of enem
 Now with CI.
 Webhook testing - success
 Pipeline webhook testing
+Jenkins
